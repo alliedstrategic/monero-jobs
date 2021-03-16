@@ -1,0 +1,54 @@
+<%= form_with(model: @service, html: {
+               novalidate: true,
+             },
+             data: {
+               controller: "form",
+               target: "form.form",
+               action: "ajax:beforeSend->form#submitForm",
+             }) do |form| %>
+  <div class="form-group">
+    <!- TODO should be form.label -->
+    <%= label_tag(:title, "Service Title", class: "new-posting__label") %>
+    <%= form.text_field :title,
+                        required: true,
+                        class: "form-control new-posting__field",
+                        placeholder: "Example: “Senior Designer”. Titles must describe one position." %>
+    <!-- This class name is the same as the input.id for the text field -->
+    <div class="form-validation service_title text-danger" hidden="true">
+      Title field is required
+    </div>
+  </div>
+  <br>
+  <div class="form-group">
+    <%= label_tag(:how_to_contact, "How to Apply", class: "new-posting__label") %>
+    <%= form.text_field :how_to_contact,
+                        required: true,
+                        class: "form-control new-posting__field",
+                        placeholder: "Link to Application Page or Email Address" %>
+    <div class="form-validation service_how_to_contact text-danger" hidden="true">
+      A Valid apply link or Email must be present.
+      <br>
+      Link format: https://www.foobarexample.com
+      <br>
+      Email format: monerojobs@protonmail.com
+    </div>
+  </div>
+  <br>
+  <div class="validation form-group">
+    <%= label_tag(:category, "Discipline", class: "new-posting__label") %>
+    <%= form.select :category, POSTING_CATEGORIES %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :content, "Job Description", class: "new-posting__label" %>
+    <%= form.rich_text_area :content %>
+    <div class="form-validation service_content_trix_input_service text-danger" hidden="true">
+      Please fill out a description
+    </div>
+  </div>
+  <br>
+  <!-- TODO ADD TERMS AND CONDITIONS OF USE -->
+  <div class="actions">
+    <%= form.submit class: "btn btn-primary posting-button" %>
+  </div>
+<% end %>

@@ -1,0 +1,95 @@
+// Place all the styles related to the Postings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.new-posting {
+    &__label{
+        font-size: 20px;
+        font-weight: 700;
+    }
+    &__field {
+        height: 50px;
+        font-size: 20px;
+    }
+}
+
+.posting-card {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    padding: 8px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 400;
+
+    max-width: 1000px;
+    border: solid 1px #e1e1e1;
+
+    &__details {
+        > div {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    }
+
+    &__title {
+        font-size: 22px;
+    }
+
+    &__new {
+        font-size: 12px;
+        background-color: #d26e2b;
+        color: white;
+        font-weight: bold;
+        padding: 6px;
+    }
+}
+
+/*
+* posting#show 
+*/
+.posting {
+    margin-top: 5%;
+
+    &__labels {
+        min-height: 65px;
+    }
+
+    &__label {
+        font-size: 15px;
+        padding: 6px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        color: white;
+        background-color: #d26e2b;
+    }
+
+    &__content {
+        margin-bottom: 50px;
+    }
+
+    &__apply {
+        height: 200px;
+        width: 300px;
+        background-color: #edeef0;
+        padding: 30px;
+
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    &__location {
+        font-size: 21px;
+    }
+
+    &__website {
+        font-size: 21px;
+    }
+
+    &__button {
+        margin-bottom: 100px;
+    }
+}
+

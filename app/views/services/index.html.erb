@@ -1,0 +1,17 @@
+<%
+  full_name = fetch_crypto_asset(:full_name)
+  symbol = fetch_crypto_asset(:symbol)
+%>
+<div class="container">
+  <h1>Your Services</h1>
+  <hr>
+  <% @services.each do |service| %>
+    <br>
+    <% if current_user.is_admin %>
+      User ID: <%= service.user_id %>
+      <br>
+    <% end %>
+    <%= render service, symbol: symbol %>
+    <br>
+  <% end %>
+</div>

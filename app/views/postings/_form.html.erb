@@ -1,0 +1,83 @@
+<%= form_with(model: @posting, html: {
+               novalidate: true,
+             },
+             data: {
+               controller: "form",
+               target: "form.form",
+               action: "ajax:beforeSend->form#submitForm",
+             }) do |form| %>
+  <!-- TODO: use proper form.label notation for all form fields-->
+  <div class="form-group">
+    <!- TODO should be form.label -->
+    <%= label_tag(:title, "Job Title", class: "new-posting__label") %>
+    <%= form.text_field :title,
+                        required: true,
+                        class: "form-control new-posting__field",
+                        placeholder: "Example: “Senior Designer”. Titles must describe one position." %>
+    <!-- This class name is the same as the input.id for the text field -->
+    <div class="form-validation posting_title text-danger" hidden="true">
+      Title field is required
+    </div>
+  </div>
+  <br>
+  <div class="form-group">
+    <%= label_tag(:how_to_apply, "How to Apply", class: "new-posting__label") %>
+    <%= form.text_field :how_to_apply,
+                        required: true,
+                        class: "form-control new-posting__field",
+                        placeholder: "Link to Application Page or Email Address" %>
+    <div class="form-validation posting_how_to_apply text-danger" hidden="true">
+      A Valid apply link or Email must be present.
+      <br>
+      Link format: https://www.foobarexample.com
+      <br>
+      Email format: monerojobs@protonmail.com
+    </div>
+  </div>
+  <br>
+  <div class="form-group">
+    <%= label_tag(:headquarters, "Company Headquarters", class: "new-posting__label") %>
+    <%= form.text_field :headquarters,
+                        required: true,
+                        class: "form-control new-posting__field",
+                        placeholder: "Example: “Chicago, IL”, “Stockholm, Sweden”" %>
+    <div class="form-validation posting_headquarters text-danger" hidden="true">
+      Company Headquarters must be present
+    </div>
+  </div>
+  <div class="form-group">
+    <%= label_tag(:posting_type, "Job Type", class: "new-posting__label") %>
+    <%= form.radio_button :posting_type, "Full Time" %>
+    <%= form.label :posting_type, "Full Time" %>
+    <%= form.radio_button :posting_type, "Part Time/Contract" %>
+    <%= form.label :posting_type, "Part Time/Contract" %>
+    <%= form.radio_button :posting_type, "Single Job" %>
+    <%= form.label :posting_type, "Single Job" %>
+    <div class="form-validation text-danger checkbox-validation" hidden="true">
+      Please select an option
+    </div>
+  </div>
+  <br>
+  <div class="validation form-group">
+    <%= label_tag(:category, "Discipline", class: "new-posting__label") %>
+    <%= form.select :category, POSTING_CATEGORIES %>
+  </div>
+  <br>
+  <div class="form-group">
+    <%= label_tag(:regional_restrictions, "Regional Restrictions", class: "new-posting__label") %>
+    <%= form.select :regional_restrictions, REGIONAL_RESTRICTIONS %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :content, "Job Description", class: "new-posting__label" %>
+    <%= form.rich_text_area :content %>
+    <div class="form-validation posting_content_trix_input_posting_10 text-danger" hidden="true">
+      Please fill out a description
+    </div>
+  </div>
+  <br>
+  <!-- TODO ADD TERMS AND CONDITIONS OF USE -->
+  <div class="actions">
+    <%= form.submit class: "btn btn-primary posting-button" %>
+  </div>
+<% end %>

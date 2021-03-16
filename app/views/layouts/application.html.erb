@@ -1,0 +1,108 @@
+<% if cookies[:coin].present? %>
+  <% logo = fetch_crypto_asset(:logo) %>
+  <% crypto_name = fetch_crypto_asset(:full_name) %>
+  <% symbol = fetch_crypto_asset(:symbol) %>
+<% end %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="verifyownership" content="eb396190e2de756d10f4ea2c5cb8502d"/>
+    <title>Cryptojobs</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
+    <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- Google Fonts -->
+    <link 
+    href="https://fonts.googleapis.com/css2?family=Hind:wght@500;600;700&family=Open+Sans&display=swap" 
+    rel="stylesheet">
+    <% if request.host === "www.bitcoincashjobs.com" %>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173581786-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-173581786-1');
+      </script>
+    <% elsif request.host === "www.dogecoinjobs.com" %>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173581786-3"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'UA-173581786-3');
+      </script>
+    <% elsif request.host === "www.ethereumjobs.dev" %>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173581786-4"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'UA-173581786-4');
+      </script>
+    <% elsif request.host === "www.hexjobs.com" %>
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-173581786-5"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'UA-173581786-5');
+      </script>
+    <% end %>
+  </head>
+  <body>
+    <!-- As a heading -->
+    <div class="container">
+      <div class="alert alert-primary" role="alert">
+        <strong>Need Support? Have Questions?</strong>
+        Join the community. check out our <%= link_to "Telegram", fetch_crypto_asset(:telegram_channel) %> channel. </div>
+      <nav class="navbar navbar-light">
+        <span class="navbar-brand">
+          <%= link_to root_path do %>
+            <%= image_tag(logo, height: 60) %>
+            <span class="navbar-title"> <%= crypto_name %> Jobs <span class="text-danger"><small>(beta)</small></span> </span>
+          <% end %>
+        </span>
+        <div>
+          <%= link_to "Support Us!", donations_donate_path %>
+        </div>
+        <div>
+          <% if current_user %>
+            <%= link_to "New Posting", new_posting_path, class: "btn btn-primary posting-button #{symbol}_color" %>
+            <%= link_to "New Service", new_service_path, class: "btn btn-secondary nav-right-margin" %>
+            <%= link_to "My Services", services_path, class: "nav-right-margin" %>
+            <%= link_to "My Postings", postings_path, class: "nav-right-margin" %>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+            <br>
+          <% else %>
+            <%= link_to "Search Services", search_services_path, class: "nav-right-margin" %>
+            <%= link_to "Post a Job or Service", postings_path %>
+          <% end %>
+        </div>
+      </nav>
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>">
+          <%= value %>
+        </div>
+      <% end %>
+      <%= yield %>
+      <footer class="navbar navbar-fixed-bottom">
+        <div class="container" style="margin-top: 500px;">
+          <span class="text-muted">
+            <%= link_to "Privacy Policy", privacy_path %> |
+            <%= link_to "Terms of Use", terms_path %> |
+            <%= link_to "Guidelines", guidelines_path %>
+          </span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

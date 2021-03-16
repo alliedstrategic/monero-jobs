@@ -1,0 +1,28 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.welcome-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+@media (max-width: 700px) {
+    .welcome-title {
+        font-size: 2rem;
+    }
+}
+
+.main-content {
+    margin-top: 4%;
+}
+
+.subhead {
+    font-size: 19px;
+}
+
+.search-form {
+    display: flex;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}

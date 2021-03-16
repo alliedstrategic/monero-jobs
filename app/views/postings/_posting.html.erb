@@ -1,0 +1,25 @@
+<%= link_to posting_path(posting) do %>
+  <div class="posting-card">
+    <div class="posting-card__details">
+      <div class="posting-card__title"><b><%= posting.title.truncate(30) %></b></div>
+      <div><%= posting.posting_type %> - <%= posting.regional_restrictions %></div>
+    </div>
+    <div class="posting-card__date"><%= posting.updated_at.strftime("%d %b") %></div>
+    <div class="posting-card__new <%= "#{symbol}_color" %>">
+      <%= posting.created_at > 3.days.ago ? "NEW" : "" %>
+    </div>
+  </div>
+  <% unless controller_name == "welcome" %>
+    <br>
+    <table>
+      <tr>
+        <td><%= link_to "View", posting, class: "btn btn-secondary" %></td>
+        <td><%= link_to "Edit", edit_posting_path(posting), class: "btn btn-secondary" %></td>
+        <td><%= link_to "Delete Posting",
+                            posting, method: :delete,
+                                     data: { confirm: "Are you sure?" },
+                                     class: "btn btn-secondary" %></td>
+      </tr>
+    </table>
+  <% end %>
+<% end %>

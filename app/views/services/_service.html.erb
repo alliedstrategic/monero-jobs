@@ -1,0 +1,25 @@
+<%= link_to service_path(service) do %>
+  <div class="posting-card">
+    <div class="posting-card__details">
+      <div class="posting-card__title"><b><%= service.title.truncate(30) %></b></div>
+      <div><%= service.category %></div>
+    </div>
+    <div class="posting-card__date"><%= service.updated_at.strftime("%d %b") %></div>
+    <div class="posting-card__new <%= "#{symbol}_color" %>">
+      <%= service.created_at > 3.days.ago ? "NEW" : "" %>
+    </div>
+  </div>
+  <% unless controller_name == "welcome" %>
+    <br>
+    <table>
+      <tr>
+        <td><%= link_to "View", service, class: "btn btn-secondary" %></td>
+        <td><%= link_to "Edit", edit_service_path(service), class: "btn btn-secondary" %></td>
+        <td><%= link_to "Delete Service",
+                        service, method: :delete,
+                                 data: { confirm: "Are you sure?" },
+                                 class: "btn btn-secondary" %></td>
+      </tr>
+    </table>
+  <% end %>
+<% end %>

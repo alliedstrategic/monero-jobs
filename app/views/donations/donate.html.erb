@@ -1,0 +1,60 @@
+<%
+  full_name = fetch_crypto_asset(:full_name)
+  symbol = fetch_crypto_asset(:symbol)
+  donation_address = fetch_crypto_asset(:donation_address)
+%>
+<div class="container main-content">
+  <div class="row welcome-title justify-content-center">
+    <h1 style="weight: 700; font-size: 3.5rem"> Support <%= full_name %> Jobs!</h1>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <p>
+        <u>The goal of <%= full_name %> Jobs is to provide a platform for genuine commerce in <%=full_name %>.</u> Developing and improving 
+        software is expensive in time and in <%= symbol %>. 
+      </p>
+      <p>
+        All funds donated in support for this website will go to the following activites:
+      </p>
+      <ul>
+        <li> Server Costs </li>
+        <li> Design Costs</li>
+        <li> Developing new software to improve commerce in <%= full_name %></li>
+        <li> Software to improve site reliability (error reporting, continuous integration)</li>
+      </ul>
+      <p>
+        Please support the site by sending some <%= symbol %> when you post a job.
+      </p>
+      <p>
+        Recommended donations:
+      </p>
+      <ul>
+        <li> Posted a Job? $10 of <%= symbol %> </li>
+        <li> Found an awesome Job? $20 of <%= symbol %> </li>
+        <li> Found an awesome employee? $30 of <%= symbol %></li>
+      </ul>
+      <br>
+      <%= symbol %>address:
+      <input type="text" value="<%= donation_address %>" id="copyAddress">
+      <button onclick="myFunction()" class="btn btn-secondary">Copy</button>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <script>
+    function myFunction() {
+      /* Get the text field */
+      var copyText = document.getElementById("copyAddress");
+    
+      /* Select the text field */
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+    
+      /* Copy the text inside the text field */
+      document.execCommand("copy");
+    
+      /* Alert the copied text */
+      alert("Copied the text: " + copyText.value);
+    }
+  </script>

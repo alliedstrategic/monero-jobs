@@ -1,0 +1,45 @@
+<%
+  # todo: clean this up this should not be everywhere
+  full_name = fetch_crypto_asset(:full_name)
+  symbol = fetch_crypto_asset(:symbol)
+%>
+<div class="container main-content">
+  <div class="row welcome-title justify-content-center">
+    Find Services, Pay in <%= full_name %>
+  </div>
+  <div class="row subhead justify-content-center text-center">
+    Post services, get paid in <%= full_name %>. Search for talent to help
+    <br>
+    your business grow
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-md-8">
+      <!-- TODO: This can by DRY'ed up with the other search form -->
+      <%= form_tag(search_services_path, method: :get, class: "search-form") do %>
+        <%= text_field_tag :search,
+                               params[:search],
+                               class: "form-control",
+                               style: "border-radius: 0",
+                               placeholder: "Search for Services" %>
+        <%= submit_tag "Search", class: "btn btn-primary #{symbol}_color" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row justify-content-center results">
+    <div class="col-xs-12 col-md-8">
+      <% if @categorized_services.present? %>
+        <% @categorized_services.each do |category| %>
+          <h3>
+            <!-- Display Category Name -->
+            <!-- TODO: Add latest post.. -->
+            <%= category[0] %> Services
+          </h3>
+          <% category[1].each do |service| %>
+            <%= render service, symbol: symbol %>
+            <br>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

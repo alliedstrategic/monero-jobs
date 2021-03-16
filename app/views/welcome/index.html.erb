@@ -1,0 +1,39 @@
+<%
+  full_name = fetch_crypto_asset(:full_name)
+  symbol = fetch_crypto_asset(:symbol)
+%>
+<div class="container main-content">
+  <div class="row welcome-title justify-content-center">
+    Work For <%= full_name %>
+  </div>
+  <div class="row subhead justify-content-center">
+    The #1 destination to find and list jobs that pay <%= full_name %> (<%= symbol %>)
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-md-8">
+      <%= form_tag(root_path, method: :get, class: "search-form") do %>
+        <%= text_field_tag :search,
+                               params[:search],
+                               class: "form-control",
+                               style: "border-radius: 0",
+                               placeholder: "Search Job Posts" %>
+        <%= submit_tag "Search", class: "btn btn-primary #{symbol}_color" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row justify-content-center results">
+    <div class="col-xs-12 col-md-8">
+      <% @categorized_postings.each do |category| %>
+        <h3>
+          <!-- Display Category Name -->
+          <!-- TODO: Add latest post.. -->
+          <%= category[0] %> Jobs
+        </h3>
+        <% category[1].each do |posting| %>
+          <%= render posting, symbol: symbol %>
+          <br>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

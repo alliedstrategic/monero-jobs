@@ -1,0 +1,160 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap";
+ @import "./actiontext.scss";
+
+ // Coin Specific Colors:
+ $xmr-orange: #d26e2b;
+ $bch-green: #5ccb79;
+ $eth-grey: #818384;
+ $doge-gold: #b48533;
+ $btc-orange: #ee8721;
+ $hex-pink: #ff227f;
+
+ body {
+    color: #4c4c4c
+ }
+
+ a, a:hover {
+    color: #4c4c4c;
+    background-color: transparent;
+    text-decoration: none;
+ }
+
+.container {
+    font-family: 'Hind', sans-serif;
+    color: #4c4c4c
+}
+
+ // Not sustainable for themes
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus { // should I need this since I have the weight in navbar?
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 0px;
+    color: #fff;
+}
+
+// Crypto Specific Colors //
+.XMR_color {
+    background-color: $xmr-orange;
+    border-color: $xmr-orange;
+
+    &:hover, 
+    &:active,
+    &:focus,
+    &:visited {
+        background-color: $xmr-orange !important;
+        border-color: $xmr-orange !important;
+    }
+}
+
+.BCH_color {
+    background-color: $bch-green;
+    border-color: $bch-green;
+
+    &:hover, 
+    &:active,
+    &:focus,
+    &:visited {
+        background-color: $bch-green !important;
+        border-color: $bch-green !important;
+    }
+}
+
+.ETH_color {
+    background-color: $eth-grey;
+    border-color: $eth-grey;
+
+    &:hover, 
+    &:active,
+    &:focus,
+    &:visited {
+        background-color: $eth-grey !important;
+        border-color: $eth-grey !important;
+    }
+}
+
+.DOGE_color {
+    background-color: $doge-gold;
+    border-color: $doge-gold;
+
+    &:hover, 
+    &:active,
+    &:focus,
+    &:visited {
+        background-color: $doge-gold !important;
+        border-color: $doge-gold !important;
+    }
+}
+
+.BTC_color {
+    background-color: $btc-orange;
+    border-color: $btc-orange;
+
+    &:hover, 
+    &:active,
+    &:focus,
+    &:visited {
+        background-color: $btc-orange !important;
+        border-color: $btc-orange !important;
+    }
+}
+
+.HEX_color {
+    background-color: $hex-pink;
+    border-color: $hex-pink;
+
+    &:hover, 
+    &:active,
+    &:focus,
+    &:visited {
+        background-color: $hex-pink !important;
+        border-color: $hex-pink !important;
+    }
+}
+//
+
+.btn-secondary:visited {
+    color: #fff;
+}
+
+.posting-button {
+    font-family: 'Hind', sans-serif;
+    font-weight: 500;
+    margin-right: 17px;
+}
+
+// Navbar CSS
+.navbar {
+    font-family: 'Hind', sans-serif;
+    font-weight: 500;
+    color: #4c4c4c
+}
+
+.navbar-title {
+    font-size: 23px;
+    padding-left: 5px;
+    color: #4c4c4c;
+    font-weight: 700;
+}
+
+.nav-right-margin {
+    margin-right: 17px;
+}

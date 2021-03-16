@@ -1,0 +1,16 @@
+<%
+  symbol = fetch_crypto_asset(:symbol)
+%>
+<div class="container">
+  <h1>Your Postings</h1>
+  <hr>
+  <% @postings.each do |posting| %>
+    <br>
+    <% if current_user.is_admin %>
+      User ID: <%= posting.user_id %>
+      <br>
+    <% end %>
+    <%= render posting, symbol: symbol %>
+    <br>
+  <% end %>
+</div>

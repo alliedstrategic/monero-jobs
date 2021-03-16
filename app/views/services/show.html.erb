@@ -1,0 +1,38 @@
+<%
+    # TODO Clean this up its everywhere
+  symbol = fetch_crypto_asset(:symbol)
+%>
+<div class="container posting">
+  <div class="row">
+    <div class="col-8 col-sm-12 posting__main">
+      <p>
+        POSTED  <%= @service.updated_at.strftime("%d %b").upcase %>
+      </p>
+      <p>
+        <h1> <%= @service.title %> </h1>
+      </p>
+      <div class="posting__labels">
+        <span class="posting__label <%= "#{symbol}_color" %>">
+          <%= @service.category %>
+        </span>
+      </div>
+      <div class="posting__content">
+        <%= @service.content %>
+      </div>
+      <!-- TODO: DRY UP THIS BUTTON LOGIC -->
+      <div class="posting__button">
+        <% if @service.apply_type == "url" %>
+          <%= button_to "Contact Service Provider",
+                                @service.how_to_contact,
+                                method: :get,
+                                class: "btn btn-primary posting__apply-button #{symbol}_color" %>
+        <% else %>
+          <%= mail_to @service.how_to_contact,
+                                "Contact Service Provider",
+                                class: "btn btn-primary posting__apply-button #{symbol}_color" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
